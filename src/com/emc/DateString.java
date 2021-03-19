@@ -18,8 +18,46 @@ public class DateString {
         this.dayOfTheWeek = calculateDaysOfTheWeek(month, days, years);
     }
 
+    public DateString(int month, int days, int years) {
+        this.month = monthsInWords(month);
+        this.days = days;
+        this.years = years;
+        this.isLeapYear = isLeapYear(years);
+        this.numberInMonth = month;
+        this.dayOfTheWeek = calculateDaysOfTheWeek(this.month, days, years);
+    }
+
     private boolean isLeapYear(int year) {
         return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
+
+    private String monthsInWords(int month) {
+        switch (month) {
+            case 1:
+                return "january";
+            case 2:
+                return "february";
+            case 3:
+                return "march";
+            case 4:
+                return "april";
+            case 5:
+                return "may";
+            case 6:
+                return "june";
+            case 7:
+                return "july";
+            case 8:
+                return "august";
+            case 9:
+                return "september";
+            case 10:
+                return "october";
+            case 11:
+                return "november";
+            default:
+                return "december";
+        }
     }
 
     private int numberInMonth(String month) {
@@ -150,7 +188,7 @@ public class DateString {
         }
     }
 
-    private String calculateDaysOfTheWeek (String month, int days, int years) {
+    private String calculateDaysOfTheWeek(String month, int days, int years) {
         int c = centuriesTable(years);
         int y = years % 100;
         int yy = (years % 100) / 4;

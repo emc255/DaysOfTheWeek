@@ -14,18 +14,19 @@ public class Main {
         boolean start = true;
         DatePattern datePattern = new DatePattern();
 
-        while(start) {
+        while (start) {
             String tempDate = userInput.nextLine();
-            if(datePattern.dateValidation(tempDate)) {
+            if (datePattern.dateValidation(tempDate)) {
                 DateString date = datePattern.createDateString(tempDate);
-                if(date.getNumberInMonth() == 2 && !date.isLeapYear() && date.getDays() > 28) {
+                if (date.getNumberInMonth() == 2 && !date.isLeapYear() && date.getDays() > 28) {
                     System.out.println(tempDate + " is not leap year theres only 28 days");
                     tryAgain();
                 } else if (date.getYears() < 1700 || date.getYears() > 2200) {
                     System.out.println(date.getYears() + " is invalid can only calculate years from 1700-2199");
                     tryAgain();
                 } else {
-                    System.out.println(tempDate + " is " +date.getDayOfTheWeek());
+                    System.out.println(date.getMonth() + " " + date.getDays()
+                            + ", " + date.getYears() + " is " + date.getDayOfTheWeek());
                 }
 
             } else {
@@ -43,10 +44,10 @@ public class Main {
         System.out.println("Try again y/n");
         Scanner yesOrNo = new Scanner(System.in);
         boolean start = true;
-        while(start) {
-            if(yesOrNo.hasNext("[ynYN]")) {
+        while (start) {
+            if (yesOrNo.hasNext("[ynYN]")) {
                 String choice = yesOrNo.nextLine();
-                if(choice.equals("y") || choice.equals("Y")) {
+                if (choice.equals("y") || choice.equals("Y")) {
                     dateEnter();
                 } else {
                     System.out.println("Quitting");
